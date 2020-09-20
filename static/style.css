@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", Arial, sans-serif;
+  color: #000;
+  background-color: blue;
+}
+
+li{
+  background-color: purple;
+  font-size:36px;
+}
