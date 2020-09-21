@@ -8,6 +8,9 @@ import flask
 import sys
 import os
 import json
+import random
+
+
 
 app = flask.Flask(__name__)
 
@@ -21,23 +24,27 @@ auth.set_access_token(access_token, access_token_secret)
 auth_api = API(auth)
 
 
-# https://stackoverflow.com/questions/22469713/managing-tweepy-api-search
-query = 'pork'
-max_tweets = 2
-
-results = auth_api.search(query, count = max_tweets)
-
-tweets = []
-for status in results:
-    tweets.append(status.user.name + ": " + status.text)
-
+foods = ['Pork Chop', 'General Tso\'s Chicken', 'Pineapple Pizza', 'Sushi', 'Beef Stew', 'Chicken Noodle Soup', 'Pasta e fagioli']
+max_tweets = 1
 
 
 @app.route('/') # Python decorator
 def homepage():
+
+    # pick a random recipe from our list
+    query = foods[random.randint(0, len(foods)-1)]
+    # find a number of tweets related to the recipe we chose
+    results = auth_api.search(q = query, count = max_tweets)
+    
+    # store all tweets in an array while formatting
+    tweets = []
+    for status in results:
+        tweets.append(status.user.name + ", " + str(status.created_at) + '\n' + status.text )
+        
     return flask.render_template(
             "index.html",
-            tweets = tweets,
+            food = query,
+            tweet = tweets[0],
             tweets_len = len(tweets)
         ) 
 

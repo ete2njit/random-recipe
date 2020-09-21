@@ -1,20 +1,12 @@
 
 <!DOCTYPE html>
 <html>
-<head> 
-<title>Tweets by {{ account }}</title> 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head> 
-<body>
-<h1>Tweets by {{ account }}</h1>
-<ol>
-{%for i in range(0, tweets_len)%} 
-    
-    <li>
-        {{ tweets[i] }}
-    </li>
-{%endfor%}
-    
-</ol>
-</body>
+    <head> 
+        <title>Tweets by {{ account }}</title> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='./tstyle.css') }}">
+    </head> 
+    <body>
+        <h1>What's being said about {{ food }}</h1>
+        <h2>{{ tweet }}</h2>
+    </body>
 </html>
