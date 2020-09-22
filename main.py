@@ -24,7 +24,9 @@ auth.set_access_token(access_token, access_token_secret)
 auth_api = API(auth)
 
 
-foods = ['Pork Chop', 'General Tso\'s Chicken', 'Pineapple Pizza', 'Sushi', 'Beef Stew', 'Chicken Noodle Soup', 'Pasta e fagioli']
+foods = ['Pork Chop', 'General Tso\'s Chicken', 'Pineapple Pizza', 'Sushi', 'Beef Stew', 'Chicken Noodle Soup', 'Pasta e fagioli', 'Brownies', 'Dumplings', 'Chicken Sandwhich']
+# I am using an array to store tweets in case I want to eventually display more than one, 
+# or simply to have a few tweets to choose at random from 
 max_tweets = 1
 
 
@@ -32,14 +34,20 @@ max_tweets = 1
 def homepage():
 
     # pick a random recipe from our list
-    query = foods[random.randint(0, len(foods)-1)]
+    query = random.choice(foods)
     # find a number of tweets related to the recipe we chose
     results = auth_api.search(q = query, count = max_tweets)
     
     # store all tweets in an array while formatting
     tweets = []
     for status in results:
-        tweets.append(status.user.name + ", " + str(status.created_at) + '\n' + status.text )
+        # store image, user, date, and contents seperately to organize better in html/css
+        tweet_information = []
+        tweet_information.append(status.user.profile_image_url)
+        tweet_information.append(status.user.name)
+        tweet_information.append(str(status.created_at))
+        tweet_information.append(status.text)
+        tweets.append(tweet_information)
         
     return flask.render_template(
             "index.html",

@@ -2,11 +2,13 @@
 <!DOCTYPE html>
 <html>
     <head> 
-        <title>Tweets by {{ account }}</title> 
+        <title>Project 1 Foodtweet</title> 
         <link rel="stylesheet" href="{{ url_for('static', filename='./tstyle.css') }}">
     </head> 
     <body>
         <h1>What's being said about {{ food }}</h1>
-        <h2>{{ tweet }}</h2>
+        <pre><img src = "{{ tweet[0] }}" width="25" height="25">  <b>{{ tweet[1] }}</b>    {{ tweet[2] }}</pre>
+        <p>{{ tweet[3] }}</p>
+        
     </body>
 </html>
