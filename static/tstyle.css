@@ -2,11 +2,29 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Arial", Arial, sans-serif;
-  color: #000;
-  background-color: white;
+  color: #1487e0;
+  background-color:  #d3d2d9;
+  font-size: 28px;
 }
 
-li{
+li {
   background-color: white;
-  font-size:36px;
+  font-size:52px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.tweet {
+  position: relative;
+  left: 50px;
+  top: 50px;
+  width: 750px;
+  height: 400px;
+  font-size: 36px;
+}
+
+p {
+  color: navy;
 }

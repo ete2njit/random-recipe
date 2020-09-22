@@ -1,13 +1,11 @@
 from tweepy import OAuthHandler
 from tweepy import API
 from tweepy import Cursor
-from datetime import datetime, date, time, timedelta
-from collections import Counter
+#from collections import Counter
 import requests
 import flask
 import sys
 import os
-import json
 import random
 
 
@@ -33,10 +31,13 @@ max_tweets = 1
 @app.route('/') # Python decorator
 def homepage():
 
-    # pick a random recipe from our list
-    query = random.choice(foods)
-    # find a number of tweets related to the recipe we chose
-    results = auth_api.search(q = query, count = max_tweets)
+    results = []
+    # while the results list is empty, search for more tweets. This is to prevent the case where no tweets are found, resulting in an error
+    while(not results):
+        # pick a random recipe from our list
+        query = random.choice(foods)
+        # find a number of tweets related to the recipe we chose
+        results = auth_api.search(q = query, count = max_tweets, lang = "en")
     
     # store all tweets in an array while formatting
     tweets = []
