@@ -1,15 +1,25 @@
-### project1-ete2
+To use this repository, you must follow these steps:
 
-## This program pulls tweets off twitter as long as they contain a specific query, and displays it in a browser using Flask, HTML and CSS
+0. Sign up for the twitter developer portal at https://developer.twitter.com
+1. Navigate to https://developer.twitter.com/en/portal/projects-and-apps and make a new app.
+2. Click on the key symbol after creating your project, and it will take you to your keys and tokens.
+    If needed, you can regenerate your access token and secret.
+3. Clone this repository by using git clone thttps://github.com/NJIT-CS490/project1-ete2.git
+4. Run the following in your terminal:
+    sudo pip install tweepy
+    (or) sudo pip3 install tweepy
+    (or) pip install tweepy
+    (or) pip3 install tweepy
+5. Install flask using the same process as above ([sudo] pip[3] install flask)
+7. Add your secret keys (from step 2) by making a new root-level file called twitter.env and populating it as follows.
+    **** MAKE SURE THE FILE AND VARIABLES ARE NAMED THE EXACT SAME WAY AS DESCRIBED!!!***
+    export KEY=''
+    export KEY_SECRET=''
+    export TOKEN=''
+    export TOKEN_SECRET=''
+8. Run `python main.py`
+9. If on Cloud9, preview templates/index.html. This should successfully render the HTML!
 
-
-
-
-
-
-
-https://stackoverflow.com/questions/22469713/managing-tweepy-api-search
-http://docs.tweepy.org/en/latest/api.html#search-methods
 
 
 
