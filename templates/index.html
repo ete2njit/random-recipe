@@ -14,5 +14,10 @@
                 <p>{{ tweet[3] }}</p>
             </div>
         </div>
+        <pre><img src = "{{ dish_info[0] }}" width="100" height="100">
+        {{ dish_info[2] }} <br><br>
+        {%for i in range(0, dish_info_length)%} 
+            <li>{{ dish_info[3][i] }}</li>
+        {%endfor%}
     </body>
 </html>
