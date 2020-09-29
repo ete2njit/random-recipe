@@ -7,17 +7,36 @@
     </head> 
     
     <body>
-        <h1>What's being said about {{ food }}</h1>
-        <div class = "tweet">
-            <pre><img src = "{{ tweet[0] }}" width="100" height="100">  <b>{{ tweet[1] }}</b>    {{ tweet[2] }}</pre>
-            <div class = "text">
-                <p>{{ tweet[3] }}</p>
+        <div id="body">
+            
+            <div id="title">
+                {{ dish_title }}
             </div>
+            
+            <div id="image">
+                <pre><img src = "{{ dish_image }}"></pre>
+                <div id="source">
+                    {{ dish_url }}
+                </div>
+            </div>
+            
+            
+            <div id="recipe" class = "recipe">
+                <br>
+                {%for i in range(0, dish_recipe_len)%} 
+                    <li>{{ dish_recipe[i] }}</li>
+                {%endfor%}
+            </div>
+            
+            
+    
+            <div id="tweet" class = "tweet">
+                <h1>What's being said about {{ food }}</h1>
+                <pre><img src = "{{ tweet[0] }}" width="75" height="75">  <b>{{ tweet[1] }}</b>    {{ tweet[2] }}</pre>
+                    <p>{{ tweet[3] }}</p>
+            </div>
+            
         </div>
-        <pre><img src = "{{ dish_info[0] }}" width="100" height="100">
-        {{ dish_info[2] }} <br><br>
-        {%for i in range(0, dish_info_length)%} 
-            <li>{{ dish_info[3][i] }}</li>
-        {%endfor%}
+        
     </body>
 </html>

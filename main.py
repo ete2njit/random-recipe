@@ -52,15 +52,12 @@ def get_recipe(query):
     for i in range(0, len(recipe)):
         recipe_list.append(recipe[i]["original"])
     
-    print(recipe_list)
-    print()
-    print(recipe_json["summary"])
-    
     
     dish_info = []
     dish_info.append(dish["image"])
     dish_info.append(dish["title"])
-    dish_info.append(recipe_json["summary"])
+    dish_info.append(recipe_json["servings"])
+    dish_info.append(recipe_json["sourceUrl"])
     dish_info.append(recipe_list)
     
     return dish_info
@@ -70,12 +67,11 @@ def get_recipe_placebo(query):
     
     recipe_list = ['3 apples', '3 tsps Dijon mustard', '2 garlic cloves chopped finely', '4 tsps honey', 'Juice of a lemon', '1 tbsp olive oil', '4 pork chops', 'Salt and pepper', '1 large white onion sliced into thin rings']
     
-    recipe_summary = 'Pork Chop with Honey, Mustard and Apples might be just the main course you are searching for. This caveman, gluten free, dairy free, and primal recipe serves 4 and costs <b>$2.4 per serving</b>. One serving contains <b>353 calories</b>, <b>30g of protein</b>, and <b>13g of fat</b>. If you have honey, onion, salt and pepper, and a few other ingredients on hand, you can make it. From preparation to the plate, this recipe takes about <b>45 minutes</b>. Only a few people made this recipe, and 1 would say it hit the spot. All things considered, we decided this recipe <b>deserves a spoonacular score of 59%</b>. This score is solid. Try <a href="https://spoonacular.com/recipes/mashed-sweet-potatoes-pork-chop-with-cider-gravy-sauteed-apples-and-onions-749564">Mashed Sweet Potatoes, Pork Chop with Cider Gravy, Sauteed Apples and Onions</a>, <a href="https://spoonacular.com/recipes/honey-mustard-chicken-and-apples-296098">Honey-Mustard Chicken and Apples</a>, and <a href="https://spoonacular.com/recipes/honey-mustard-coleslaw-with-apples-167187">Honey-Mustard Coleslaw with Apples</a> for similar recipes.'
-    
     dish_info = []
     dish_info.append("https://spoonacular.com/recipeImages/656729-312x231.jpg")
     dish_info.append("Pork Chop with Honey, Mustard and Apples")
-    dish_info.append(recipe_summary)
+    dish_info.append("2 servings")
+    dish_info.append("https://www.place.com/recipe")
     dish_info.append(recipe_list)
     
     return dish_info
@@ -89,11 +85,11 @@ def homepage():
     while(not results):
         # pick a random recipe from our list
         query = random.choice(foods)
-        
-        dish_info = get_recipe_placebo(query)
-        
         # find a number of tweets related to the recipe we chose
         results = auth_api.search(q = query, count = max_tweets, lang = "en")
+        
+        
+    dish_info = get_recipe_placebo(query)
     
     # store all tweets in an array while formatting
     tweets = []
@@ -111,8 +107,12 @@ def homepage():
             food = query,
             tweet = tweets[0],
             tweets_len = len(tweets),
-            dish_info = dish_info,
-            dish_info_length = len(dish_info)
+            dish_image = dish_info[0],
+            dish_title = dish_info[1],
+            dish_servings = dish_info[2],
+            dish_url = dish_info[3],
+            dish_recipe = dish_info[4],
+            dish_recipe_len = len(dish_info[4])
         ) 
 
 app.run(

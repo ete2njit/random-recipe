@@ -1,4 +1,4 @@
-To use this repository, you must follow these steps:
+# To use this repository, you must follow these steps:
 
 0.  Sign up for the twitter developer portal at https://developer.twitter.com
 1.  Navigate to https://developer.twitter.com/en/portal/projects-and-apps and make a new app.
@@ -30,7 +30,7 @@ To use this repository, you must follow these steps:
 
 
 
-Technical issues:
+## Technical issues:
 
 At one point, any change made to the CSS file was not picked up by the HTML file. The cause for this was, as far as I can tell, in the 
 'href="{{ url_for('static', filename='./tstyle.css') }}' section of the html file. Upon changing the filename to simply '/tstyle.css',
@@ -41,10 +41,28 @@ although I find it to be an odd problem and unscalable solution to make every CS
 
 
 I had some issue getting my spoonacular to work, the main problem being figuring out what the response was/why is was unsubscriptable.
-Thanks to stackoverflow, I reasonably quickly found converting it to json was the way to go.
+Thanks to stackoverflow (https://stackoverflow.com/questions/34508981/response-object-is-not-subscriptable-python-http-post-request/34509116)
+I reasonably quickly found converting it to json was the way to go.
 
-Known Issues:
+
+Being quite inexperienced at web design (and design in general), I had the hardest time, by far, trying to
+make the website at least bearable to look at. My biggest issue was figuring out how to divide the screen into
+separate parts. I found the solution to this on stackoverflow at https://stackoverflow.com/questions/12284044/how-to-split-page-into-4-equal-parts,
+which was very helpful. Unfortunately, one of the div's I set up was not working at all as intended, despite it
+looking exactly like the others. It turned out that, from before I subdivided the window, I had used a 
+different field of the same div where I set the fields position to relative, which would override
+the position: absolute I added to the css file. As such, the box would move around as I zoomed in and out
+in the browser. This was probably the simplest bug I had this entire project, as well as the hardest to solve.
+
+## Known Issues:
 
 When making changes in my CSS file, sometimes they go through, sometimes they do not. I have tried opening the preview in my browser and refreshing there, but this still does not
 guarantee the changes made in the CSS file will be picked up. If I had more time, it is possible that I might have found the definite cause for this issue and resolved it,
 which would allow me to experiment with the appearance of my webpage more, resulting in a (hopefully) prettier page.
+
+## Improvements:
+
+I use two calls to spoonacular to first get a random recipe with ID, then use the ID in a second call to get 
+the ingredients. If I had more time, I would try to find a way to reduce these into one call that accomplishes
+both goals, or find out with certainty that this is not possible, as right now I would wager there is a way 
+to do this.
