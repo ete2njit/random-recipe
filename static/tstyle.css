@@ -16,58 +16,62 @@ div {
   border-radius: 25px;
 }
 
-#title {
-  top: 5%;
-  left: 20%;
-  right: 20%;
-  bottom: 80%;
-  text-align: center;
-}
-
-#image {
-  background: #f09; 
-  top: 10%; 
-  left: -10%; 
-  right: 50%; 
-  bottom: 35%;
-}
-
-#source{
-  left: 50%;
-  top: 10%;
-}
-
-#recipe {
-  background: #f90; 
-  top: 10%; 
-  left: 50%; 
-  right: -10%; 
-  bottom: 35%;
-  text-indent: 5%
-}
-
-#tweet {
-  top: 70%;
-  left: 10%;
-  right: 10%;
-  bottom: 30%;
-  text-align: center;
-  font-size: 16px;
-  margin: auto;
-  color: navy;
-}
-
 #body {
   background: #FFF;
   position: fixed;
   top: 10%;
   left: 20%;
   right: 20%;
-  bottom: 10%;
+  bottom: 1%;
 }
 
-li {
+#title {
+  font-size: 42px;
+  top: 5%;
+  left: 20%;
+  right: 20%;
+  bottom: 80%;
+  text-align: center;
+  font-weight: bold;
+}
+
+#content {
+  top: 20%;
+  left: 5%;
+  right: 5%;
+  bottom: 25%;
+  word-wrap: break-word;
+}
+
+
+#image {
+  background: #ab3a8d; 
+  top: 0%; 
+  left: 0%; 
+  right: 52.5%; 
+  bottom: 0%;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+#recipe {
+  background: #2a9c50; 
+  top: 0%; 
+  left: 52.5%; 
+  right: 0%; 
+  bottom: 0%;
+  font-weight: bold;
   font-size:22px;
+}
+
+#tweet {
+  top: 75%;
+  left: 10%;
+  right: 10%;
+  text-align: center;
+  font-size: 16px;
+  margin: auto;
+  color: navy;
 }
 
 h1 {

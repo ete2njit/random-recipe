@@ -6,7 +6,7 @@ import flask
 import sys
 import os
 import random
-
+import json
 
 app = flask.Flask(__name__)
 
@@ -28,21 +28,24 @@ foods = ['Pork Chop', 'General Tso\'s Chicken', 'Pizza', 'Sushi', 'Beef Stew', '
 # or simply to have a few tweets to choose at random from 
 max_tweets = 1
 
-def get_recipe(query):
+
+# This function gets the dish object on which we base tweetfinding and the later recipe information finding
+def get_recipe():
     # First, find a random recipe based on the query prompt
     
-    # https://spoonacular.com/food-api/docs#Authentication
-    # https://spoonacular.com/food-api/docs#Search-Recipes-Complex
-    link = "https://api.spoonacular.com/recipes/complexSearch?apiKey=" + spoon_key + "&query=" + query + "&number=1"
+    link = "https://api.spoonacular.com/recipes/random?apiKey=" + spoon_key + "&number=1&sort=random" 
     response = requests.get(link)
     # https://stackoverflow.com/questions/34508981/response-object-is-not-subscriptable-python-http-post-request/34509116
     data = response.json()
     
-    dish = data["results"][0]
+    return data["recipes"][0]
     
-    # Next, we find the actual recipe for the dish
+    
+    
+    
+def get_recipe_information(dish):
     # https://spoonacular.com/food-api/docs#Get-Recipe-Information
-    link = "https://api.spoonacular.com/recipes/" + "656729" + "/information?apiKey=" + spoon_key + "&includeNutrition=false"
+    link = "https://api.spoonacular.com/recipes/" + str(dish["id"]) + "/information?apiKey=" + spoon_key + "&includeNutrition=false"
     response = requests.get(link)
     recipe_json = response.json()
     recipe = recipe_json["extendedIngredients"]
@@ -63,7 +66,7 @@ def get_recipe(query):
     return dish_info
     
 # --------------------------------------------------------------------------------------------
-def get_recipe_placebo(query):
+def get_recipe_placebo():
     
     recipe_list = ['3 apples', '3 tsps Dijon mustard', '2 garlic cloves chopped finely', '4 tsps honey', 'Juice of a lemon', '1 tbsp olive oil', '4 pork chops', 'Salt and pepper', '1 large white onion sliced into thin rings']
     
@@ -75,7 +78,7 @@ def get_recipe_placebo(query):
     dish_info.append(recipe_list)
     
     return dish_info
-    
+# --------------------------------------------------------------------------------------------
 
 @app.route('/') # Python decorator
 def homepage():
@@ -83,13 +86,15 @@ def homepage():
     results = []
     # while the results list is empty, search for more tweets. This is to prevent the case where no tweets are found, resulting in an error
     while(not results):
-        # pick a random recipe from our list
-        query = random.choice(foods)
+        # find a random dish
+        dish = get_recipe()
+        
+        query = dish["title"]
         # find a number of tweets related to the recipe we chose
         results = auth_api.search(q = query, count = max_tweets, lang = "en")
         
         
-    dish_info = get_recipe_placebo(query)
+    dish_info = get_recipe_information(dish)
     
     # store all tweets in an array while formatting
     tweets = []

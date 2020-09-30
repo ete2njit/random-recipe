@@ -13,21 +13,24 @@
                 {{ dish_title }}
             </div>
             
-            <div id="image">
-                <pre><img src = "{{ dish_image }}"></pre>
-                <div id="source">
-                    {{ dish_url }}
+            <div id="content">
+                <div id="image">
+                    <div style="margin-left: 5%;  margin-top: 5%">
+                        <a href="{{ dish_url }}"><img style="max-height: 250px;" src = "{{ dish_image }}"></a>
+                        <br><a href="{{ dish_url }}">Click me or the image to find the original recipe!</a>
+                    </div>
+                </div>
+                
+                
+                <div id="recipe" class = "recipe">
+                    <div style="margin-left: 5%;  margin-top: 5%">
+                        serving size: {{ dish_servings }}<br>
+                        {%for i in range(0, dish_recipe_len)%} 
+                            <li>{{ dish_recipe[i] }}</li>
+                        {%endfor%}
+                    </div>
                 </div>
             </div>
-            
-            
-            <div id="recipe" class = "recipe">
-                <br>
-                {%for i in range(0, dish_recipe_len)%} 
-                    <li>{{ dish_recipe[i] }}</li>
-                {%endfor%}
-            </div>
-            
             
     
             <div id="tweet" class = "tweet">
