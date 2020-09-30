@@ -49,26 +49,12 @@ def get_recipe_information(dish):
     dish_info = []
     dish_info.append(dish["image"])
     dish_info.append(dish["title"])
+    dish_info.append(dish["readyInMinutes"])
     dish_info.append(recipe_json["servings"])
     dish_info.append(recipe_json["sourceUrl"])
     dish_info.append(recipe_list)
     
     return dish_info
-    
-# --------------------------------------------------------------------------------------------
-def get_recipe_placebo():
-    
-    recipe_list = ['3 apples', '3 tsps Dijon mustard', '2 garlic cloves chopped finely', '4 tsps honey', 'Juice of a lemon', '1 tbsp olive oil', '4 pork chops', 'Salt and pepper', '1 large white onion sliced into thin rings']
-    
-    dish_info = []
-    dish_info.append("https://spoonacular.com/recipeImages/656729-312x231.jpg")
-    dish_info.append("Pork Chop with Honey, Mustard and Apples")
-    dish_info.append("2 servings")
-    dish_info.append("https://www.place.com/recipe")
-    dish_info.append(recipe_list)
-    
-    return dish_info
-# --------------------------------------------------------------------------------------------
 
 @app.route('/') # Python decorator
 def homepage():
@@ -104,10 +90,11 @@ def homepage():
             tweets_len = len(tweets),
             dish_image = dish_info[0],
             dish_title = dish_info[1],
-            dish_servings = dish_info[2],
-            dish_url = dish_info[3],
-            dish_recipe = dish_info[4],
-            dish_recipe_len = len(dish_info[4])
+            dish_prep_time = dish_info[2],
+            dish_servings = dish_info[3],
+            dish_url = dish_info[4],
+            dish_recipe = dish_info[5],
+            dish_recipe_len = len(dish_info[5])
         ) 
 
 app.run(

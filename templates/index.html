@@ -25,6 +25,7 @@
                 <div id="recipe" class = "recipe">
                     <div style="margin-left: 5%;  margin-top: 5%">
                         serving size: {{ dish_servings }}<br>
+                        prep time: {{ dish_prep_time }} minutes<br><br>
                         {%for i in range(0, dish_recipe_len)%} 
                             <li>{{ dish_recipe[i] }}</li>
                         {%endfor%}
