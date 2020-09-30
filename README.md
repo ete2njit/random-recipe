@@ -60,6 +60,11 @@ When making changes in my CSS file, sometimes they go through, sometimes they do
 guarantee the changes made in the CSS file will be picked up. If I had more time, it is possible that I might have found the definite cause for this issue and resolved it,
 which would allow me to experiment with the appearance of my webpage more, resulting in a (hopefully) prettier page.
 
+The webpage deployed on heroku does not utilize the tstyle.css file at all when using https. Thanks to this reddit post I stumbled upon: 
+https://www.reddit.com/r/Heroku/comments/fdsygw/css_not_loading_when_app_is_visited_via_https/
+I found out that it does work fine when using http. I did not find a solution, and for the person who posted this thread the issue resolved itself
+without any further action. Since it does seem to work fine using http, I hope that is sufficient.
+
 ## Improvements:
 
 I use two calls to spoonacular to first get a random recipe with ID, then use the ID in a second call to get 
