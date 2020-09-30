@@ -55,22 +55,40 @@ def get_recipe_information(dish):
     dish_info.append(recipe_list)
     
     return dish_info
+    
+    # --------------------------------------------------------------------------------------------
+def get_recipe_placebo():
+    
+    recipe_list = ['1 cup uncooked white rice', '3 cups water', '1 tsp salt', '2 eggs, beaten', '1 cup Parmesan or Romano cheese', '1 Tbs fresh minced parsley or 1/2 Tbs dehydrated parsley', '1 cup plain breadcrumbs', 'oil for frying']
+    
+    dish_info = []
+    dish_info.append("https://spoonacular.com/recipeImages/654735-556x370.jpg")
+    dish_info.append("Party Rice Balls")
+    dish_info.append("45")
+    dish_info.append("24")
+    dish_info.append("https://www.foodista.com/recipe/4FYGNZ3F/party-rice-balls")
+    dish_info.append(recipe_list)
+    
+    return dish_info
+# --------------------------------------------------------------------------------------------
 
 @app.route('/') # Python decorator
 def homepage():
 
     results = []
-    # while the results list is empty, search for more tweets. This is to prevent the case where no tweets are found, resulting in an error
-    while(not results):
+    try: 
         # find a random dish
         dish = get_recipe()
         
         query = dish["title"]
         # find a number of tweets related to the recipe we chose
         results = auth_api.search(q = query, count = max_tweets, lang = "en")
-        
-        
-    dish_info = get_recipe_information(dish)
+            
+            
+        dish_info = get_recipe_information(dish)
+    except:
+        dish_info = get_recipe_placebo()
+        results = auth_api.search(q = dish_info[1], count = max_tweets, lang = "en")
     
     # store all tweets in an array while formatting
     tweets = []
@@ -83,9 +101,17 @@ def homepage():
         tweet_information.append(status.text)
         tweets.append(tweet_information)
         
+    # in case the twitter api call returned nothing, fill a default tweet
+    if(not tweets):
+        tweet_information = []
+        tweet_information.append("https://pbs.twimg.com/profile_images/1308010958862905345/-SGZioPb_normal.jpg")
+        tweet_information.append("")
+        tweet_information.append("")
+        tweet_information.append("No tweets found related to " + dish_info[1])
+        tweets.append(tweet_information)
+        
     return flask.render_template(
             "index.html",
-            food = query,
             tweet = tweets[0],
             tweets_len = len(tweets),
             dish_image = dish_info[0],

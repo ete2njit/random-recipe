@@ -61,7 +61,7 @@ div {
   right: 0%; 
   bottom: 0%;
   font-weight: bold;
-  font-size:22px;
+  font-size:16px;
 }
 
 #tweet {
@@ -72,6 +72,12 @@ div {
   font-size: 16px;
   margin: auto;
   color: navy;
+}
+
+#tweet_image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 h1 {
