@@ -3,10 +3,7 @@ from tweepy import API
 from tweepy import Cursor
 import requests
 import flask
-import sys
 import os
-import random
-import json
 
 app = flask.Flask(__name__)
 
@@ -19,10 +16,6 @@ spoon_key = os.environ['SPOONACULAR_KEY']
 auth = OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 auth_api = API(auth)
-
-# stores the selection of foods we randomly choose from to find a recipe and one (or more) tweet(s)
-foods = ['Pork Chop', 'General Tso\'s Chicken', 'Pizza', 'Sushi', 'Beef Stew', 'Chicken Noodle Soup', 'Pasta e fagioli', 'Brownies', 'Dumplings']
-
 
 # I am using an array to store tweets in case I want to eventually display more than one, 
 # or simply to have a few tweets to choose at random from 
@@ -39,9 +32,6 @@ def get_recipe():
     data = response.json()
     
     return data["recipes"][0]
-    
-    
-    
     
 def get_recipe_information(dish):
     # https://spoonacular.com/food-api/docs#Get-Recipe-Information
