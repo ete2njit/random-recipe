@@ -19,24 +19,24 @@ div {
 #body {
   background: #FFF;
   position: fixed;
-  top: 10%;
+  top: 4%;
   left: 20%;
   right: 20%;
-  bottom: 1%;
+  bottom: 4%;
 }
 
 #title {
   font-size: 42px;
-  top: 5%;
+  top: 2%;
   left: 20%;
   right: 20%;
-  bottom: 80%;
+  bottom: 85%;
   text-align: center;
   font-weight: bold;
 }
 
 #content {
-  top: 20%;
+  top: 15%;
   left: 5%;
   right: 5%;
   bottom: 25%;
